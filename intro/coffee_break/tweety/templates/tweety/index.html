@@ -1,0 +1,25 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <script src="{% static 'js/riot+compiler.min.js' %}"></script>
+        <!--script src="{% static 'js/bootstrap.min.js' %}"></script-->
+        <!--script src="https://code.jquery.com/jquery-2.2.1.min.js"></script-->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        
+    </head>
+    <body>
+        <div class='container'>
+            <tweet></tweet>
+        </div>
+
+
+        <script type="riot/tag">
+            {% include 'tweety/tweet.tag' %}
+        </script>
+        <script>
+            opts = {{ tweets|safe }} // initial tweets come from Django template tag
+            riot.mount('tweet', opts)
+        </script>
+    </body>
+</html>

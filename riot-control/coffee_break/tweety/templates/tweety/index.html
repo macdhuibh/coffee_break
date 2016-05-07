@@ -1,0 +1,34 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <script src="{% static 'js/riot+compiler.min.js' %}"></script>
+        <script src="{% static 'js/riotcontrol.js' %}"></script>
+        <script src="{% static 'js/tweetstore.js' %}"></script>
+        <!--script src="{% static 'js/bootstrap.min.js' %}"></script-->
+        <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        
+    </head>
+    <body>
+        <div class='container'>
+            <tweet></tweet>
+        </div>
+
+
+        <script type="riot/tag">
+            {% include 'tweety/tweet.tag' %}
+        </script>
+        <script>
+            // initial tweets come from Django template tag
+            var tweets = {{ tweets|safe }} 
+
+            // Create a store instance.
+            var tweetStore = new TweetStore(tweets) 
+
+            // Register the store in central dispatch and mount.
+            RiotControl.addStore(tweetStore) 
+            riot.mount('tweet')
+        </script>
+    </body>
+</html>

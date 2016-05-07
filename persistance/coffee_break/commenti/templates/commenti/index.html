@@ -1,0 +1,27 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <script src="{% static 'js/riot+compiler.min.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        
+    </head>
+    <body>
+        <div class='container'>
+            <comment-box></comment-box>
+        </div>
+
+
+        <script type="riot/tag">
+            {% include 'commenti/comments.tag' %}
+        </script>
+        <script>
+            var opts = {
+                comments: {{ comments|safe }},
+            };
+            console.log(opts);
+            riot.mount('comment-box', opts);
+        </script>
+    </body>
+</html>
