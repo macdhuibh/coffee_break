@@ -63,3 +63,7 @@ target/
 
 # MacOS X
 .DS_Store
+
+# Ignore sqlite Databases
+*.sqlite3
+*.db
